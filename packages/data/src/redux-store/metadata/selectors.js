@@ -77,7 +77,7 @@ export function hasFinishedResolution( state, selectorName, args = [] ) {
  *
  * @param {State}     state        Data state.
  * @param {string}    selectorName Selector name.
- * @param {unknown[]} [args]       Arguments passed to selector.
+ * @param {unknown[]} args         Arguments passed to selector.
  *
  * @return {boolean} Has resolution failed
  */
@@ -93,11 +93,11 @@ export function hasResolutionFailed( state, selectorName, args = [] ) {
  *
  * @param {State}     state        Data state.
  * @param {string}    selectorName Selector name.
- * @param {unknown[]} [args]       Arguments passed to selector.
+ * @param {unknown[]} args         Arguments passed to selector.
  *
  * @return {Error|undefined} Last resolution error
  */
-export function getResolutionFailure( state, selectorName, args = [] ) {
+export function getResolutionError( state, selectorName, args = [] ) {
 	return getResolutionState( state, selectorName, args )?.error;
 }
 

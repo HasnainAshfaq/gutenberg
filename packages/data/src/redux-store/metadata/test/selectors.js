@@ -186,7 +186,7 @@ describe( 'hasResolutionFailed', () => {
 	} );
 } );
 
-describe( 'getResolutionFailure', () => {
+describe( 'getResolutionError', () => {
 	let registry;
 	let shouldFail;
 
@@ -217,14 +217,14 @@ describe( 'getResolutionFailure', () => {
 
 	it( 'returns undefined if the resolution has succeeded', async () => {
 		expect(
-			registry.select( 'store' ).getResolutionFailure( 'getItems' )
+			registry.select( 'store' ).getResolutionError( 'getItems' )
 		).toBeFalsy();
 
 		registry.select( 'store' ).getItems();
 		jest.advanceTimersByTime( 1 );
 
 		expect(
-			registry.select( 'store' ).getResolutionFailure( 'getItems' )
+			registry.select( 'store' ).getResolutionError( 'getItems' )
 		).toBeFalsy();
 	} );
 
@@ -232,7 +232,7 @@ describe( 'getResolutionFailure', () => {
 		shouldFail = true;
 
 		expect(
-			registry.select( 'store' ).getResolutionFailure( 'getItems' )
+			registry.select( 'store' ).getResolutionError( 'getItems' )
 		).toBeFalsy();
 
 		await resolve( registry, 'getItems' );
@@ -240,7 +240,7 @@ describe( 'getResolutionFailure', () => {
 		expect(
 			registry
 				.select( 'store' )
-				.getResolutionFailure( 'getItems' )
+				.getResolutionError( 'getItems' )
 				.toString()
 		).toBe( 'Error: cannot fetch items' );
 	} );
@@ -248,20 +248,20 @@ describe( 'getResolutionFailure', () => {
 	it( 'returns undefined if the failed resolution succeeded after retry', async () => {
 		shouldFail = true;
 		expect(
-			registry.select( 'store' ).getResolutionFailure( 'getItems' )
+			registry.select( 'store' ).getResolutionError( 'getItems' )
 		).toBeFalsy();
 
 		await resolve( registry, 'getItems' );
 
 		expect(
-			registry.select( 'store' ).getResolutionFailure( 'getItems' )
+			registry.select( 'store' ).getResolutionError( 'getItems' )
 		).toBeTruthy();
 
 		registry.dispatch( 'store' ).invalidateResolution( 'getItems', [] );
 		jest.advanceTimersByTime( 1 );
 
 		expect(
-			registry.select( 'store' ).getResolutionFailure( 'getItems' )
+			registry.select( 'store' ).getResolutionError( 'getItems' )
 		).toBeFalsy();
 
 		shouldFail = false;
@@ -269,7 +269,7 @@ describe( 'getResolutionFailure', () => {
 		jest.advanceTimersByTime( 1 );
 
 		expect(
-			registry.select( 'store' ).getResolutionFailure( 'getItems' )
+			registry.select( 'store' ).getResolutionError( 'getItems' )
 		).toBeFalsy();
 	} );
 } );
