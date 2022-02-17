@@ -120,11 +120,9 @@ export default {
 						margin-inline-start: auto !important;
 						margin-inline-end: auto !important;
 					}
-
 					${ appendSelectors( selector, '> .alignwide' ) }  {
 						max-width: ${ wideSize ?? contentSize };
 					}
-
 					${ appendSelectors( selector, '> .alignfull' ) } {
 						max-width: none;
 					}
@@ -134,16 +132,14 @@ export default {
 		output += `
 			${ appendSelectors( selector, '> .alignleft' ) } {
 				float: left;
-				margin-inline-end: 2em;
 				margin-inline-start: 0;
+				margin-inline-end: 2em;
 			}
-
 			${ appendSelectors( selector, '> .alignright' ) } {
 				float: right;
 				margin-inline-start: 2em;
 				margin-inline-end: 0;
 			}
-
 		`;
 
 		if ( hasBlockGapStylesSupport ) {
