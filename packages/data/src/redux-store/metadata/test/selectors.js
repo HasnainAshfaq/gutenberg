@@ -17,11 +17,10 @@ import {
  */
 import { createRegistry } from '@wordpress/data';
 
-jest.useFakeTimers();
+jest.useRealTimers();
 
 async function resolve( registry, selector ) {
 	const resolution = registry.resolveSelect( 'store' )[ selector ]();
-	jest.advanceTimersByTime( 100 );
 	try {
 		await resolution;
 	} catch ( e ) {}
@@ -148,7 +147,6 @@ describe( 'hasResolutionFailed', () => {
 		).toBeFalsy();
 
 		registry.select( 'store' ).getItems();
-		jest.advanceTimersByTime( 1 );
 
 		expect(
 			registry.select( 'store' ).hasResolutionFailed( 'getItems' )
@@ -221,7 +219,6 @@ describe( 'getResolutionError', () => {
 		).toBeFalsy();
 
 		registry.select( 'store' ).getItems();
-		jest.advanceTimersByTime( 1 );
 
 		expect(
 			registry.select( 'store' ).getResolutionError( 'getItems' )
@@ -258,7 +255,6 @@ describe( 'getResolutionError', () => {
 		).toBeTruthy();
 
 		registry.dispatch( 'store' ).invalidateResolution( 'getItems', [] );
-		jest.advanceTimersByTime( 1 );
 
 		expect(
 			registry.select( 'store' ).getResolutionError( 'getItems' )
@@ -266,7 +262,6 @@ describe( 'getResolutionError', () => {
 
 		shouldFail = false;
 		registry.select( 'store' ).getItems();
-		jest.advanceTimersByTime( 1 );
 
 		expect(
 			registry.select( 'store' ).getResolutionError( 'getItems' )
