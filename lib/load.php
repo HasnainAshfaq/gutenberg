@@ -74,7 +74,7 @@ require __DIR__ . '/compat/wordpress-5.9/register-global-styles-cpt.php';
 // If it loads after, that function will always be present at that point
 // and the global styles assets won't be loaded.
 require __DIR__ . '/compat/wordpress-5.9/script-loader.php';
-require __DIR__ . '/compat/wordpress-5.9/get-global-styles-and-settings.php';
+require __DIR__ . '/compat/wordpress-6.0/get-global-styles-and-settings.php';
 require __DIR__ . '/compat/wordpress-5.9/render-svg-filters.php';
 require __DIR__ . '/compat/wordpress-5.9/json-file-decode.php';
 require __DIR__ . '/compat/wordpress-5.9/translate-settings-using-i18n-schema.php';
